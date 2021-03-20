@@ -2,9 +2,65 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
     xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.acme</groupId>
+    <groupId>x1.kubernetes</groupId>
     <artifactId>ldap-operator</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <description>kubernetes custom resource for LDAP groups</description>
+    <url>https://maven.x1/site/${project.groupId}/${project.artifactId}/${project.version}</url>
+    <inceptionYear>2021</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://github.com/kifj/ldap-operator</url>
+        <connection>scm:git:git@github.com:kifj/ldap-operator.git</connection>
+        <tag>HEAD</tag>
+    </scm>
+    <distributionManagement>
+        <site>
+            <id>x1-site</id>
+            <name>X1 Maven Site</name>
+            <url>dav:https://www.x1/nexus/content/repositories/x1-site/${project.groupId}/${project.artifactId}/${project.version}</url>
+        </site>
+        <repository>
+            <id>x1-repo</id>
+            <name>X1 Maven Repository</name>
+            <url>https://www.x1/nexus/content/repositories/x1-repo</url>
+        </repository>
+        <snapshotRepository>
+            <id>x1-snapshot-repo</id>
+            <name>X1 Maven Snapshot Repository</name>
+            <url>https://www.x1/nexus/content/repositories/x1-snapshot-repo</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <organization>
+        <name>X1</name>
+        <url>https://www.x1</url>
+    </organization>
+    <developers>
+        <developer>
+            <id>joe</id>
+            <name>Johannes Beck</name>
+            <email>mail@johannes-beck.name</email>
+            <url>http://johannes-beck.name</url>
+            <organization>X1</organization>
+            <organizationUrl>https://www.x1</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>+1</timezone>
+            <properties>
+                <skype>johannesbeck</skype>
+            </properties>
+        </developer>
+    </developers>
+
     <properties>
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
