@@ -1,0 +1,49 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: ldap-roles.kubernetes.x1
+  labels:
+    app: ldap-operator
+spec:
+  group: kubernetes.x1
+  scope: Namespaced
+  versions:
+  - name: v1beta2
+    served: true
+    storage: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              roles:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    role:
+                      type: string
+                    gid:
+                      type: integer
+                    description:
+                      type: string
+                    users:
+                      type: array
+                      items:
+                        type: string
+          status:
+            type: object
+            properties:
+              message:
+                type: string
+    subresources:
+      status: {}
+  names:
+    kind: LdapRole
+    listKind: LdapRoles
+    plural: ldap-roles
+    singular: ldap-role
+    shortNames:
+    - lr

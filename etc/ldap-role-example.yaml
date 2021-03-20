@@ -1,0 +1,19 @@
+apiVersion: kubernetes.x1/v1beta2
+kind: LdapRole
+metadata:
+  name: wildfly-roles
+  namespace: default
+spec:
+  roles:
+  - role: wildfly-admins
+    gid: 1100
+    description: Wildfly Administrators
+    users:
+    - joe
+    - sysadm
+  - role: wildfly-users
+    gid: 1101
+    description: Wildfly Users
+    users:
+    - snowdog
+    - joe
