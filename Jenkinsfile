@@ -1,7 +1,6 @@
 node {
   def mvnHome = tool 'Maven-3.6'
   env.JAVA_HOME = tool 'JDK-11'
-  def branch = 'wildfly-22'
   def mavenSetting = 'dfe73d5e-dd12-4ed1-965f-7c8dcebd9101'
 
   stage('Checkout') {
@@ -17,7 +16,7 @@ node {
   stage('Publish') {
     withMaven(maven: 'Maven-3.6', mavenSettingsConfig: mavenSetting) {
       sh "mvn -Prpm deploy site-deploy -DskipTests"
-      sh "mvn sonar:sonar -Dsonar.host.url=https://www.x1/sonar -Dsonar.projectKey=x1.kubernetes:ldap-operator:${branch}"
+      sh "mvn sonar:sonar"
     }
   }
 }
