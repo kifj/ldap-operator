@@ -48,7 +48,7 @@
             <id>joe</id>
             <name>Johannes Beck</name>
             <email>mail@johannes-beck.name</email>
-            <url>http://johannes-beck.name</url>
+            <url>https://johannes-beck.name</url>
             <organization>X1</organization>
             <organizationUrl>https://www.x1</organizationUrl>
             <roles>
@@ -68,10 +68,10 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <quarkus-plugin.version>1.13.3.Final</quarkus-plugin.version>
+        <quarkus-plugin.version>2.4.1.Final</quarkus-plugin.version>
         <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-        <quarkus.platform.version>1.13.3.Final</quarkus.platform.version>
+        <quarkus.platform.version>2.4.1.Final</quarkus.platform.version>
         <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
 
         <quarkus.application.version>1.0</quarkus.application.version>
@@ -81,7 +81,7 @@
         <quarkus.container-image.name>ldap-operator</quarkus.container-image.name>
         <quarkus.container-image.push>false</quarkus.container-image.push>
         <quarkus.container-image.registry>registry.x1</quarkus.container-image.registry>
-        <quarkus.native.builder-image>quay.io/quarkus/ubi-quarkus-mandrel:20.3-java11</quarkus.native.builder-image>
+        <quarkus.native.builder-image>quay.io/quarkus/ubi-quarkus-mandrel:21.3-java11</quarkus.native.builder-image>
         <quarkus.native.resources.includes>**</quarkus.native.resources.includes>
         <sonar.host.url>https://www.x1/sonar</sonar.host.url>
     </properties>
