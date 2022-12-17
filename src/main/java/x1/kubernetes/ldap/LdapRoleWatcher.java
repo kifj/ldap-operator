@@ -65,14 +65,14 @@ public class LdapRoleWatcher {
             LdapRoleResourceStatus status = new LdapRoleResourceStatus();
             status.setMessage("Applied action " + action);
             resource.setStatus(status);
-            crClient.updateStatus(resource);
+            crClient.resource(resource).replaceStatus();
           }
         } catch (Exception e) {
           LOG.error(null, e);
           LdapRoleResourceStatus status = new LdapRoleResourceStatus();
           status.setMessage("Error for action " + action + ": " + e.getMessage());
           resource.setStatus(status);
-          crClient.updateStatus(resource);
+          crClient.resource(resource).replaceStatus();
         }
       }
 

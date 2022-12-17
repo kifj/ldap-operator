@@ -9,8 +9,9 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import io.fabric8.kubernetes.client.DefaultKubernetesClient;
+import io.fabric8.kubernetes.client.ConfigBuilder;
 import io.fabric8.kubernetes.client.KubernetesClient;
+import io.fabric8.kubernetes.client.KubernetesClientBuilder;
 import io.fabric8.kubernetes.client.dsl.MixedOperation;
 import io.fabric8.kubernetes.client.dsl.Resource;
 import io.fabric8.kubernetes.internal.KubernetesDeserializer;
@@ -31,7 +32,7 @@ public class KubernetesClientProducer {
   @Produces
   @Singleton
   KubernetesClient makeDefaultClient(@Named("namespace") String namespace) {
-    return new DefaultKubernetesClient().inNamespace(namespace);
+    return new KubernetesClientBuilder().withConfig(new ConfigBuilder().withNamespace(namespace).build()).build();
   }
 
   @Produces
@@ -39,6 +40,6 @@ public class KubernetesClientProducer {
   MixedOperation<LdapRoleResource, LdapRoleResourceList, Resource<LdapRoleResource>> makeCustomLdapRoleResourceClient(
       KubernetesClient defaultClient) {
     KubernetesDeserializer.registerCustomKind("LdapRole", LdapRoleResource.class);
-    return defaultClient.customResources(LdapRoleResource.class, LdapRoleResourceList.class);
+    return defaultClient.resources(LdapRoleResource.class, LdapRoleResourceList.class);
   }
 }
