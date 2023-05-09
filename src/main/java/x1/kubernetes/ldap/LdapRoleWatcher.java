@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import javax.enterprise.event.Observes;
-import javax.inject.Inject;
+import jakarta.enterprise.event.Observes;
+import jakarta.inject.Inject;
 import javax.naming.NamingException;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -65,14 +65,14 @@ public class LdapRoleWatcher {
             LdapRoleResourceStatus status = new LdapRoleResourceStatus();
             status.setMessage("Applied action " + action);
             resource.setStatus(status);
-            crClient.resource(resource).replaceStatus();
+            crClient.resource(resource).updateStatus();
           }
         } catch (Exception e) {
           LOG.error(null, e);
           LdapRoleResourceStatus status = new LdapRoleResourceStatus();
           status.setMessage("Error for action " + action + ": " + e.getMessage());
           resource.setStatus(status);
-          crClient.resource(resource).replaceStatus();
+          crClient.resource(resource).updateStatus();
         }
       }
 

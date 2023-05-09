@@ -5,9 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import javax.enterprise.inject.Produces;
-import javax.inject.Named;
-import javax.inject.Singleton;
+import jakarta.enterprise.inject.Produces;
+import jakarta.inject.Named;
+import jakarta.inject.Singleton;
 
 import io.fabric8.kubernetes.client.ConfigBuilder;
 import io.fabric8.kubernetes.client.KubernetesClient;

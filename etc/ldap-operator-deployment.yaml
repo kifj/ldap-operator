@@ -29,13 +29,13 @@ spec:
         imagePullPolicy: Always
         env:
         - name: LDAP_USER
-          value: "TODO"
+          value: "uid=root,cn=users,dc=x1"
         - name: LDAP_PASSWORD
-          value: "TODO"
+          value: "SandTHEM"
         - name: LDAP_URL
-          value: "TODO"
+          value: "ldap://ldap.x1"
         - name: LDAP_SEARCH_BASE
-          value: "TODO"
+          value: "dc=x1"
         - name: QUARKUS_LOG_CONSOLE_JSON
           value: "true"
         resources:
