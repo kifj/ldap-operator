@@ -1,14 +1,20 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.7
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.8
 LABEL maintainer="mail@johannes-beck.name"
 
+ADD src/main/docker/x1.repo /etc/yum.repos.d/x1.repo
+RUN microdnf install x1-ca \
+    && microdnf update \
+    && microdnf clean all \
+    && update-ca-trust
+
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
-WORKDIR /work/
+WORKDIR /work
 
-RUN chown 1001 /work \
+RUN chown 185 /work \
     && chmod "g+rwX" /work \
-    && chown 1001:root /work
-COPY --chown=1001:root target/*-runner /work/application
+    && chown 185:root /work
+COPY --chown=185:root target/*-runner /work/application
 
-EXPOSE 8080
-USER 1001
-CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
+EXPOSE 8080 8443
+USER 185
+CMD ["./application", "-Dquarkus.http.host=0.0.0.0", "-Djavax.net.ssl.trustStore=/etc/pki/ca-trust/extracted/java/cacerts"]

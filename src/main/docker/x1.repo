@@ -1,0 +1,5 @@
+[x1-repo]
+name=X1 Repository
+baseurl=http://www.x1/nexus/repository/x1-repo-$basearch
+enabled=1
+gpgcheck=0
