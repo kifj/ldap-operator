@@ -64,15 +64,15 @@
     <properties>
         <compiler-plugin.version>3.11.0</compiler-plugin.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <quarkus-plugin.version>3.5.0</quarkus-plugin.version>
+        <quarkus-plugin.version>3.6.1</quarkus-plugin.version>
         <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-        <quarkus.platform.version>3.5.0</quarkus.platform.version>
-        <surefire-plugin.version>3.1.2</surefire-plugin.version>
+        <quarkus.platform.version>3.6.1</quarkus.platform.version>
+        <surefire-plugin.version>3.2.1</surefire-plugin.version>
 
         <quarkus.application.version>1.0</quarkus.application.version>
         <quarkus.container-image.build>false</quarkus.container-image.build>
@@ -81,7 +81,7 @@
         <quarkus.container-image.name>ldap-operator</quarkus.container-image.name>
         <quarkus.container-image.push>false</quarkus.container-image.push>
         <quarkus.container-image.registry>registry.x1</quarkus.container-image.registry>
-        <quarkus.native.builder-image>quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-17</quarkus.native.builder-image>
+        <quarkus.native.builder-image>quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-21</quarkus.native.builder-image>
         <quarkus.native.resources.includes>**</quarkus.native.resources.includes>
         <sonar.host.url>https://www.x1/sonar</sonar.host.url>
     </properties>

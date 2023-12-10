@@ -1,5 +1,5 @@
 [x1-repo]
 name=X1 Repository
-baseurl=http://www.x1/nexus/repository/x1-repo-$basearch
+baseurl=http://www.x1/nexus/repository/x1-extra-rpms/x1
 enabled=1
 gpgcheck=0
