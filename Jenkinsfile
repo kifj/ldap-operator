@@ -15,7 +15,7 @@ node {
   
   stage('Publish') {
     withMaven(maven: 'Maven-3.9', mavenSettingsConfig: mavenSetting) {
-      sh "mvn deploy site-deploy -DskipTests"
+      sh "mvn deploy -DskipTests"
       sh "mvn sonar:sonar"
     }
   }
