@@ -1,5 +1,7 @@
 package x1.kubernetes.ldap;
 
+import java.io.Serial;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import io.fabric8.kubernetes.api.model.Namespaced;
@@ -20,24 +22,6 @@ import io.fabric8.kubernetes.model.annotation.Version;
 @ShortNames("lr")
 public class LdapRoleResource extends CustomResource<LdapRoleResourceSpec, LdapRoleResourceStatus>
     implements Namespaced {
+  @Serial
   private static final long serialVersionUID = 1L;
-
-  private LdapRoleResourceSpec spec;
-  private LdapRoleResourceStatus status;
-
-  public LdapRoleResourceSpec getSpec() {
-    return spec;
-  }
-
-  public void setSpec(LdapRoleResourceSpec spec) {
-    this.spec = spec;
-  }
-
-  public LdapRoleResourceStatus getStatus() {
-    return status;
-  }
-
-  public void setStatus(LdapRoleResourceStatus status) {
-    this.status = status;
-  }
 }

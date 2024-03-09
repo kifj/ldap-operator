@@ -23,7 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LdapProvider {
+public class LdapProvider implements LdapConstants {
   private static final String LDAP_CTX_FACTORY = "com.sun.jndi.ldap.LdapCtxFactory";
   private static final Logger LOG = LoggerFactory.getLogger(LdapProvider.class);
   private static final String GROUPS = "cn=groups";
@@ -79,14 +79,14 @@ public class LdapProvider {
     DirContext ctx = createDirectoryContext();
     try {
       Attributes attributes = new BasicAttributes();
-      Attribute objectClassAttr = new BasicAttribute("objectClass");
-      objectClassAttr.add("top");
-      objectClassAttr.add("posixGroup");
+      Attribute objectClassAttr = new BasicAttribute(ATTR_OBJECT_CLASS);
+      objectClassAttr.add(ATTR_TOP);
+      objectClassAttr.add(ATTR_POSIX_GROUP);
       attributes.put(objectClassAttr);
-      attributes.put("cn", group.getCommonName());
-      attributes.put("gidNumber", group.getGid());
+      attributes.put(ATTR_CN, group.getCommonName());
+      attributes.put(ATTR_GID, group.getGid());
       if (!group.getMembers().isEmpty()) {
-        Attribute members = new BasicAttribute("memberUid");
+        Attribute members = new BasicAttribute(ATTR_MEMBER_UID);
         group.getMembers().forEach(member -> members.add(member));
         attributes.put(members);
       }
@@ -104,13 +104,13 @@ public class LdapProvider {
     try {
       if (!StringUtils.equals(oldGroup.getGid(), newGroup.getGid())) {
         items.add(
-            new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("gidNumber", newGroup.getGid())));
+            new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute(ATTR_GID, newGroup.getGid())));
       }
       if (!StringUtils.equals(oldGroup.getDescription(), newGroup.getDescription())) {
         items.add(new ModificationItem(DirContext.REPLACE_ATTRIBUTE,
-            new BasicAttribute("description", newGroup.getDescription())));
+            new BasicAttribute(ATTR_DESCRIPTION, newGroup.getDescription())));
       }
-      Attribute members = new BasicAttribute("memberUid");
+      Attribute members = new BasicAttribute(ATTR_MEMBER_UID);
       if (!newGroup.getMembers().isEmpty()) {
         if (!Objects.equals(newGroup.getMembers(), oldGroup.getMembers())) {
           newGroup.getMembers().forEach(member -> members.add(member));
@@ -153,20 +153,20 @@ public class LdapProvider {
   private User extractUser(SearchResult sr) throws NamingException {
     User user = new User();
     Attributes attr = sr.getAttributes();
-    if (attr.get("uid") != null) {
-      user.setUid(attr.get("uid").get().toString());
+    if (attr.get(ATTR_UID) != null) {
+      user.setUid(attr.get(ATTR_UID).get().toString());
     }
-    if (attr.get("cn") != null) {
-      user.setCommonName(attr.get("cn").get().toString());
+    if (attr.get(ATTR_CN) != null) {
+      user.setCommonName(attr.get(ATTR_CN).get().toString());
     }
-    if (attr.get("mail") != null) {
-      user.setEmail(attr.get("mail").get().toString());
+    if (attr.get(ATTR_MAIL) != null) {
+      user.setEmail(attr.get(ATTR_MAIL).get().toString());
     }
-    if (attr.get("givenname") != null) {
-      user.setFirstName(attr.get("givenname").get().toString());
+    if (attr.get(ATTR_GIVEN_NAME) != null) {
+      user.setFirstName(attr.get(ATTR_GIVEN_NAME).get().toString());
     }
-    if (attr.get("sn") != null) {
-      user.setLastName(attr.get("sn").get().toString());
+    if (attr.get(ATTR_SN) != null) {
+      user.setLastName(attr.get(ATTR_SN).get().toString());
     }
     LOG.debug("Found LDAP user {}", user);
     return user;
@@ -175,17 +175,17 @@ public class LdapProvider {
   private Group extractGroup(SearchResult sr) throws NamingException {
     Group group = new Group();
     Attributes attr = sr.getAttributes();
-    if (attr.get("cn") != null) {
-      group.setCommonName(attr.get("cn").get().toString());
+    if (attr.get(ATTR_CN) != null) {
+      group.setCommonName(attr.get(ATTR_CN).get().toString());
     }
-    if (attr.get("gidNumber") != null) {
-      group.setGid(attr.get("gidNumber").get().toString());
+    if (attr.get(ATTR_GID) != null) {
+      group.setGid(attr.get(ATTR_GID).get().toString());
     }
-    if (attr.get("description") != null) {
-      group.setDescription(attr.get("description").get().toString());
+    if (attr.get(ATTR_DESCRIPTION) != null) {
+      group.setDescription(attr.get(ATTR_DESCRIPTION).get().toString());
     }
-    if (attr.get("memberUid") != null) {
-      NamingEnumeration<?> members = attr.get("memberUid").getAll();
+    if (attr.get(ATTR_MEMBER_UID) != null) {
+      NamingEnumeration<?> members = attr.get(ATTR_MEMBER_UID).getAll();
       while (members.hasMore()) {
         group.addMember(members.next().toString());
       }
@@ -195,7 +195,7 @@ public class LdapProvider {
   }
 
   private String getGroupName(Group group) {
-    return "cn=" + group.getCommonName();
+    return ATTR_CN + "=" + group.getCommonName();
   }
 
   private String getFullGroupName(Group group) {

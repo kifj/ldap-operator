@@ -1,10 +1,12 @@
 package x1.kubernetes.ldap;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class Group implements Serializable {
+  @Serial
   private static final long serialVersionUID = 1L;
   private String commonName;
   private String description;
@@ -38,19 +40,19 @@ public class Group implements Serializable {
   public String getGid() {
     return gid;
   }
-  
+
   public void setGid(String gid) {
     this.gid = gid;
   }
-  
+
   public String getDescription() {
     return description;
   }
-  
+
   public void setDescription(String description) {
     this.description = description;
   }
-  
+
   public Set<String> getMembers() {
     return members;
   }
@@ -69,5 +71,4 @@ public class Group implements Serializable {
         + "]";
   }
 
- 
 }

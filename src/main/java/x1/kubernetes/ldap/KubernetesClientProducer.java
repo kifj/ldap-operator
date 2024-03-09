@@ -29,7 +29,6 @@ public class KubernetesClientProducer {
     return "default";
   }
 
-  @SuppressWarnings("resource")
   @Produces
   @Singleton
   KubernetesClient makeDefaultClient(@Named("namespace") String namespace) {
