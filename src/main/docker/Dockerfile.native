@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/ubi-minimal:9.4
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.6
 LABEL maintainer="mail@johannes-beck.name"
 
 ADD src/main/docker/x1.repo /etc/yum.repos.d/x1.repo
